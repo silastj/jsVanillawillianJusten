@@ -158,5 +158,41 @@ defer
     console.log('Promise race retorna após tiver resultado de uma, cancelando as demais',responses)
   })
 
-  // Herança Prototipal
+  // Class
+
+  class Animal {
+    constructor(tamanho, raça, nome) {
+      this.tamanho = tamanho;
+      this.raça = raça;
+      this.nome = nome;
+    }
+
+    // metodo da class Animal
+    // digitar no console.log dog.Animal()
+    latir(){
+      console.log(`A ${this.nome} latiu au au, da raça ${this.raça} e tamanho ${this.tamanho}`)
+    }
+
+    // O static fica dentro do class Animal e não fica no objeto dog
+    // digitar no console.log Animal.mordeu()
+
+    static mordeu(){
+      console.log(`O ${this.nome} mordeu e tem a raça ${this.raça} do tamanho ${this.tamanho}`)
+    }
+
+    // Pega o nome
+    // digitar no console.log dog.name()
+    get name(){
+      console.log(`O nome do cachorro ${this.nome}`)
+    }
+
+    // altera o nome
+    // digitar no console.log dog.newName = 'Silas'   / se digitar dog.nome ele alterou o nome para Silas
+    set newName(nome){
+      this.nome = nome;
+    }
+
+  }
+
+const dog = new Animal('pequena', 'vira-lata', 'Pandora')
 
