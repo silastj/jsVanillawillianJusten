@@ -114,6 +114,10 @@ console.log('sexo', sexo)
 //PROMISES
 // Temos 3 estados na promises
 // pending - resolve - reject
+// No .all Só envia quando todas as promisses são resolvidas
+// NO .race O valor só é printado quando alguma das promises tiver resultado, a outra promise é
+// cancelada.
+
 let defer = new Promise((resolve, reject) => {
   if(false){
     resolve('Resolveu')
@@ -126,7 +130,33 @@ defer
   .then((data) => console.log(data))
   .catch((erro) => console.log(erro))
 
-  let posts = fetch('https://willianjusten.com.br/search.json')
+  let posts = fetch('https://corebiz-test.herokuapp.com/api/v1/products')
   posts
-  .then(dat => dat.json())
-  .then(dat => console.log(dat))
+  .then(data => data.json())
+  .then(data => console.log(data))
+
+
+  const currency = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({ currency: 'euro', value: 3.50 })      
+    }, 2000);
+  })
+
+  const countries = new Promise((resolve, reject) => {
+    resolve(['Poá', 'Sorocaba', 'Pilar do Sul'])
+  })
+
+  Promise
+  .all([currency, countries])
+  .then(responses => {
+    console.log('Promise All retorna após tiver resultado de todas',responses)
+  })
+
+  Promise
+  .race([currency, countries])
+  .then(responses => {
+    console.log('Promise race retorna após tiver resultado de uma, cancelando as demais',responses)
+  })
+
+  // Herança Prototipal
+
