@@ -196,3 +196,24 @@ defer
 
 const dog = new Animal('pequena', 'vira-lata', 'Pandora')
 
+//SYMBOLS ele é um identificador unico
+
+let foo = Symbol('descrição');
+console.log('symbol ',foo)
+
+
+let options ={
+  [Symbol('name')] : 'Silas',
+  [Symbol('age')]: 38,
+  city:'Poá'
+}
+
+console.log('options ', options)
+
+
+const symbols = Object.getOwnPropertySymbols(options);
+
+console.log(symbols);
+
+const resultado = symbols.map(symb => options[symb]);
+console.log('resultado', resultado);
