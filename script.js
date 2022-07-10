@@ -217,3 +217,46 @@ console.log(symbols);
 
 const resultado = symbols.map(symb => options[symb]);
 console.log('resultado', resultado);
+
+
+// ITERADORS, // ITERABLE
+let texto = 'Poá';
+let iterator = texto[Symbol.iterator]();
+
+console.log('iterator ',iterator.next());
+console.log('iterator ',iterator.next());
+console.log('iterator ',iterator.next());
+console.log('iterator ',iterator.next());
+
+for( letter of texto ){
+  console.log('letra ', letter)
+  if(letter == 'o')break;
+}
+
+//GENERATORS
+
+function ajaxUrl(url){
+  fetch(url)
+    .then(data => data.json())
+    .then(data => returnData.next(data))
+}
+
+//https://api.github.com/users/willianjusten
+//https://api.github.com/users/silastj
+
+
+function* ajaxGen(){
+
+  console.log('Buscando github Silas');
+  const resGithub = yield ajaxUrl('https://api.github.com/users/silastj');
+  console.log(resGithub)
+
+  console.log('Buscando github Wiliaan Justen');
+  const resGithubA = yield ajaxUrl('https://api.github.com/users/willianjusten');
+  console.log(resGithubA)
+}
+
+
+
+const returnData = ajaxGen();
+returnData.next();
